@@ -1,38 +1,50 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { breakpoints, cores } from '../../globalStyles'
 
-export const Container = styled.div`
-    width: 1366px;
-    height: 298px;
-    background: #FFEBD9;
-    position: relative;
-    top: 1850px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
+//Configuração CSS do container do rodapé
+export const Container = styled.footer`
+  background-color: ${cores.bege};
+  padding: 40px 0;
+  font-size: 14px;
+  height: 298px;
+`
+export const FooterSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`
+//Configuração CSS da lista de links.
+export const Links = styled.ul`
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 80px;
+`
 
-export const Logo = styled.img`
-    width: 125px;
-    height: 57.5px;
-    margin-top: 10px;
-`;
+//Configuração CSS dos Links.
+export const Link = styled.a`
+  margin-right: 8px;
+  cursor: pointer;
+`
 
-export const Socials = styled.div`
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-`;
+//Configuração CSS do copyright.
+export const Copyright = styled.p`
+  width: 480px;
+  font-size: 10px;
+  text-align: center;
 
-export const SocialIcon = styled.img`
-    width: 24px;
-    height: 24px;
-`;
+  a {
+    color: ${cores.preto};
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
-export const FooterText = styled.p`
-    width: 480px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-    text-align: center;
-    color: #000;
-`;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+  }
+`

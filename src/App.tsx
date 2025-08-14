@@ -1,7 +1,23 @@
-import Home from './pages/Home'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import { GlobalCss } from './globalStyles'
+import { store } from './store/index'
+import Rotas from './routes'
+import Footer from './components/Footer/index'
+import Cart from './components/Cart/index'
 
 function App() {
-  return <Home />
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
+        <div className="container"></div>
+        <Rotas />
+        <Footer />
+        <Cart />
+      </BrowserRouter>
+    </Provider>
+  )
 }
 
 export default App

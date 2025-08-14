@@ -1,16 +1,42 @@
-import React from 'react';
-import Hero from '../../components/Hero';
-import CardList from '../../components/CardList';
-import Footer from '../../components/Footer';
+import { useGetHomePageQuery } from '../../services/api'
+import Header from '../../components/Header/index'
+import RestaurantsList from '../../components/RestaurantsList/index'
 
-const Home: React.FC = () => {
+export type Cardapio = {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
+export type Restaurante = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: Cardapio[]
+}
+
+//Arquivo de estruturação da página Home do site, usando o React Router Dom.
+const Home = () => {
+  const { data: lojas } = useGetHomePageQuery()
+
+  if (lojas) {
     return (
-        <>
-        <Hero />
-        <CardList />
-        <Footer />
-        </>
-    );
-};
+      <>
+        <Header />
+        <RestaurantsList restaurantes={lojas} />
+      </>
+    )
+  }
 
-export default Home;
+  return <h4>Carregando...</h4>
+}
+
+//Exportações.
+export default Home
