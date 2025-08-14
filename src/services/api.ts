@@ -1,5 +1,6 @@
+//Configuração de api de requisições.
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Restaurante } from '../pages/Home/index'
+import { Restaurante } from '../pages/Home/home-index'
 
 type Product = {
   id: number
@@ -37,7 +38,7 @@ type PurchaseResponse = {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fake-api-tau.vercel.app/api/efood'
+    baseUrl: 'https://ebac-fake-api.vercel.app/api/efood'
   }),
   endpoints: (builder) => ({
     getHomePage: builder.query<Restaurante[], void>({

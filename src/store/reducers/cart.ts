@@ -1,37 +1,37 @@
+//Configuração de reducer do carrinho
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-// Tipagem para itens do carrinho
 export interface CartItem {
   id: number
-  nome: string
   foto: string
-  porcao: string
+  descricao: string
   preco: number
-  quantidade: number
+  nome: string
+  porcao: string
 }
 
-interface CartState {
+type CartState = {
   items: CartItem[]
-  opened: boolean
+  isOpen: boolean
 }
 
 const initialState: CartState = {
   items: [],
-  opened: false
+  isOpen: false
 }
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    open: (state) => {
-      state.opened = true
-    },
-    close: (state) => {
-      state.opened = false
-    },
     add: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload)
+    },
+    open: (state) => {
+      state.isOpen = true
+    },
+    close: (state) => {
+      state.isOpen = false
     },
     remove: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
@@ -42,8 +42,6 @@ export const cartSlice = createSlice({
   }
 })
 
-// Exportando ações
-export const { open, close, add, remove, clear } = cartSlice.actions
-
-// Exportando reducer
-export const cartReducer = cartSlice.reducer
+//Exportações
+export const { add, open, close, remove, clear } = cartSlice.actions
+export default cartSlice.reducer

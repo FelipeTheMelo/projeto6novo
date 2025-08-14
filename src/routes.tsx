@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home/index'
-import RestaurantPlates from './pages/Restaurant/index'
-import Checkout from './pages/Checkout/index'
+import Home from './pages/Home/home-index'
+import RestaurantPlates from './pages/Restaurant/restaurant-index'
+import Checkout from './pages/Checkout/checkout-index'
 
 //Configuração das rotas de navegação com Router-dom
 const Rotas = () => (
