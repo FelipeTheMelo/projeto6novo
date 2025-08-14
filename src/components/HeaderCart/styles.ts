@@ -1,55 +1,32 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../globalStyles'
 import { Link } from 'react-router-dom'
 
-//configuração CSS da barra de fundo.
 export const Headerbar = styled.header`
-  height: 186px;
-
-  div {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: ${breakpoints.mobile}) {
-      align-items: center;
-    }
-  }
-`
-//Configuração CSS do retorno.
-export const Textos = styled(Link)`
-  color: ${cores.rosa};
-  font-size: 18px;
-  font-weight: 900;
-  text-align: center;
-  text-decoration: none;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 120px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    margin-top: 120px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `
 
-//Configuração CSS do carrinho.
+export const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
+`
+
+interface TextosProps {
+  children: React.ReactNode
+}
+
+export const Textos = styled.div<TextosProps>`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`
+
 export const TextCart = styled.p`
-  color: ${cores.rosa};
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
   cursor: pointer;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 120px;
-    font-size: 14px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    margin-top: 120px;
-    padding-left: 5%;
-    font-size: 14px;
-  }
+  font-weight: 500;
+  font-size: 1rem;
 `

@@ -1,17 +1,12 @@
 import { CartItem } from '../store/reducers/cart'
 
-export const parseToBrl = (amount = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(amount)
+export const getTotalPrice = (items: CartItem[]) => {
+  return items.reduce(
+    (total, item) => total + item.preco * (item.quantidade || 1),
+    0
+  )
 }
 
-export const getTotalPrice = (items: CartItem[]): number => {
-  return items.reduce((accumulator, currentItem) => {
-    if (currentItem.preco) {
-      return accumulator + currentItem.preco
-    }
-    return accumulator
-  }, 0)
+export const parseToBrl = (value: number) => {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }

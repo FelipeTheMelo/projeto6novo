@@ -1,34 +1,36 @@
-import Product from '../Produtc/index'
-import { Container, List } from './styles'
-import { Cardapio } from '../../pages/Home/index'
+import React from 'react'
+import Product, { ProductProps } from '../Produtc'
+import { ProductsContainer } from './styles'
 
-//Configuração da tipagem das propriedades.
-export type Props = {
-  pratos: Cardapio[]
+export interface Prato {
+  id: number
+  nome: string
+  foto: string
+  porcao: string
+  preco: number
+  descricao?: string // agora opcional
 }
 
-//Const principal do container de cards.
-const ProductsList = ({ pratos }: Props) => {
+interface ProductsListProps {
+  pratos: Prato[]
+}
+
+const ProductsList: React.FC<ProductsListProps> = ({ pratos }) => {
   return (
-    <Container>
-      <div className="container">
-        <List>
-          {pratos.map((prato) => (
-            <Product
-              key={prato.id}
-              id={prato.id}
-              descricao={prato.descricao}
-              nome={prato.nome}
-              foto={prato.foto}
-              porcao={prato.porcao}
-              preco={prato.preco}
-            />
-          ))}
-        </List>
-      </div>
-    </Container>
+    <ProductsContainer>
+      {pratos.map((prato) => (
+        <Product
+          key={prato.id}
+          id={prato.id}
+          nome={prato.nome}
+          foto={prato.foto}
+          porcao={prato.porcao}
+          preco={prato.preco}
+          descricao={prato.descricao} // opcional, não quebra TS
+        />
+      ))}
+    </ProductsContainer>
   )
 }
 
-//Exportações
 export default ProductsList

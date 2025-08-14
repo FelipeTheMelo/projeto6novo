@@ -1,39 +1,31 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { RootReducer } from '../../store/index'
+import { RootState } from '../../store'
+import { open } from '../../store/reducers/cart'
 import { Headerbar, Textos, TextCart } from './styles'
 import effodLogo from '../../assets/logos/logo.png'
 import background from '../../assets/pratos/background.png'
-import { open } from '../../store/reducers/cart'
 
-//Const principal do Cabeçalho.
-const HeaderCart = () => {
+const HeaderCart: React.FC = () => {
   const dispatch = useDispatch()
-  const { items } = useSelector((state: RootReducer) => state.cart)
 
-  const openCart = () => {
-    dispatch(open())
-  }
+  // Agora 'cart' tem o tipo correto
+  const cart = useSelector((state: RootState) => state.cart)
 
   return (
-    <Headerbar style={{ backgroundImage: `url(${background})` }}>
-      <div className="container">
-        {/* Restaurantes */}
-        <Textos to="/">Restaurantes</Textos>
+    <Headerbar>
+      <Link to="/">
+        <img src={effodLogo} alt="Logo" />
+      </Link>
 
-        {/* logo */}
-        <Link to="/">
-          <img src={effodLogo} alt="Efood" />
-        </Link>
-
-        {/* Carrinho */}
-        <TextCart onClick={openCart}>
-          {items.length} produto(s) no carrinho
+      <Textos>
+        <TextCart title="Abrir Carrinho" onClick={() => dispatch(open())}>
+          Carrinho ({cart.items.length})
         </TextCart>
-      </div>
+      </Textos>
     </Headerbar>
   )
 }
 
-//Exportações
 export default HeaderCart

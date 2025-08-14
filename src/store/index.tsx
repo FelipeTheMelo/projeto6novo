@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import api from '../services/api'
-import cartReducer from '../store/reducers/cart'
+import { cartReducer } from './reducers/cart'
+import { api } from '../services/api' // seu RTK Query API
 
-//função principal de gerenciamento dos reducers
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
@@ -12,5 +11,6 @@ export const store = configureStore({
     getDefaultMiddleware().concat(api.middleware)
 })
 
-//Exportações
-export type RootReducer = ReturnType<typeof store.getState>
+// Tipagem global do store
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
